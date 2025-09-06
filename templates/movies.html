@@ -9,16 +9,21 @@
       {% for movie in movies %}
       <div class="movie-card">
         <img src="{{ movie.poster_url }}" alt="{{ movie.title }}" class="movie-poster">
-        <form action="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}" method="POST">
-          <input type="text" name="title" value="{{ movie.title }}" placeholder="Movie title" required><br>
-          <button type="submit" class="btn">Update</button>
-        </form>
+        <div style="display: flex; gap: 8px;">
+          <form action="{{ url_for('update_movie', user_id=user.id, movie_id=movie.id) }}" method="POST">
+            <input type="text" name="title" value="{{ movie.title }}" placeholder="Movie title" required><br>
+            <button type="submit" class="btn">Update</button>
+          </form>
+        </div>
         <div>
             <strong>Year: {{ movie.release }}</strong>
         </div>
         <div>
             <strong>Director: {{ movie.director }}</strong>
         </div>
+        <form action="{{ url_for('delete_movie', user_id=user.id, movie_id=movie.id) }}" method="POST">
+            <button type="submit" class="btn">Delete</button>
+        </form>
       </div>
       {% endfor %}
   </div>
